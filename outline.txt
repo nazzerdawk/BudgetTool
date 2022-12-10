@@ -1,0 +1,21 @@
+This will be the general outline for this project. 
+
+    In an effort to avoid feature creep and to keep the project completable, I'm planning it in 3 stages, and plan to keep the main branch "Always Shippable" 
+so to speak. 
+
+Stage 1: Basic Functionality. 
+    This program will be a simple console app. 
+        At start, there will be an object called BudgetTool and an object called Budget. 
+        Budget will contain a list of Ints called Transactions, an Int called BudgetedAmount, and an Int called Remaining 
+        There will be a Method named Update() that will call each time any other command is called. 
+    Interaction will be command line based and will allow user to input following commands:
+        - Show Budget - Will output the BudgetedAmount, then the transactions list, and then the remaining total. 
+        - Set Budget - Updates BudgetedAmount
+        - Add Expense - Adds a negative Int to the Transactions list
+        - Add Income - Adds a positive Int to the Transactions list 
+        - Reset - Resets all values after a confirmation dialogue
+
+        
+        
+        
+    
