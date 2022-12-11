@@ -1,0 +1,15 @@
+C:\Users\nick_rogers\OneDrive\AppDev\Csharp\Workspaces\BudgetingTool\bin\Debug\net6.0\BudgetingTool.exe
+C:\Users\nick_rogers\OneDrive\AppDev\Csharp\Workspaces\BudgetingTool\bin\Debug\net6.0\BudgetingTool.deps.json
+C:\Users\nick_rogers\OneDrive\AppDev\Csharp\Workspaces\BudgetingTool\bin\Debug\net6.0\BudgetingTool.runtimeconfig.json
+C:\Users\nick_rogers\OneDrive\AppDev\Csharp\Workspaces\BudgetingTool\bin\Debug\net6.0\BudgetingTool.dll
+C:\Users\nick_rogers\OneDrive\AppDev\Csharp\Workspaces\BudgetingTool\bin\Debug\net6.0\BudgetingTool.pdb
+C:\Users\nick_rogers\OneDrive\AppDev\Csharp\Workspaces\BudgetingTool\obj\Debug\net6.0\BudgetingTool.csproj.AssemblyReference.cache
+C:\Users\nick_rogers\OneDrive\AppDev\Csharp\Workspaces\BudgetingTool\obj\Debug\net6.0\BudgetingTool.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nick_rogers\OneDrive\AppDev\Csharp\Workspaces\BudgetingTool\obj\Debug\net6.0\BudgetingTool.AssemblyInfoInputs.cache
+C:\Users\nick_rogers\OneDrive\AppDev\Csharp\Workspaces\BudgetingTool\obj\Debug\net6.0\BudgetingTool.AssemblyInfo.cs
+C:\Users\nick_rogers\OneDrive\AppDev\Csharp\Workspaces\BudgetingTool\obj\Debug\net6.0\BudgetingTool.csproj.CoreCompileInputs.cache
+C:\Users\nick_rogers\OneDrive\AppDev\Csharp\Workspaces\BudgetingTool\obj\Debug\net6.0\BudgetingTool.dll
+C:\Users\nick_rogers\OneDrive\AppDev\Csharp\Workspaces\BudgetingTool\obj\Debug\net6.0\refint\BudgetingTool.dll
+C:\Users\nick_rogers\OneDrive\AppDev\Csharp\Workspaces\BudgetingTool\obj\Debug\net6.0\BudgetingTool.pdb
+C:\Users\nick_rogers\OneDrive\AppDev\Csharp\Workspaces\BudgetingTool\obj\Debug\net6.0\BudgetingTool.genruntimeconfig.cache
+C:\Users\nick_rogers\OneDrive\AppDev\Csharp\Workspaces\BudgetingTool\obj\Debug\net6.0\ref\BudgetingTool.dll

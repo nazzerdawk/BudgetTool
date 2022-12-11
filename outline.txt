@@ -5,8 +5,8 @@ so to speak.
 
 Stage 1: Basic Functionality. 
     This program will be a simple console app. 
-        At start, there will be an object called BudgetTool and an object called Budget. 
-        Budget will contain a list of Ints called Transactions, an Int called BudgetedAmount, and an Int called Remaining 
+        At start, there will be single main class called Budget. 
+        Budget will contain a list of Ints called Transactions, an Int called BudgetedAmount, and an Int called RemainingAmount
         There will be a Method named Update() that will call each time any other command is called. 
     Interaction will be command line based and will allow user to input following commands:
         - Show Budget - Will output the BudgetedAmount, then the transactions list, and then the remaining total. 
