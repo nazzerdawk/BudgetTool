@@ -1,15 +1,30 @@
-﻿Budget budget = new Budget(0);
+﻿/*
+    This is a budgeting tool that I wrote over the course of about 6 hours. It's my first "complete" project in C#. 
+    I started C# after 15 years of GML (Game Maker Language).  
+
+    Using newer Dotnet pardigm of having no main() function. I dislike the extra indentation, sue me.
+*/
+
+Budget budget = new Budget(0);
 Program();
 
 
 
 void Program()
-{
-    string? inputraw = "";
+{//This method contains our main loop.
+    
+
+    //nullable due to fact that a person who REALLY WANTS TO INPUT NULL VALUES can do so
+    //How, I don't ever remember, but apparently it's possible.  
+    string? inputraw = ""; 
     string input = "";
     Console.WriteLine("Hello, welcome to my budgeting tool.");
     while (true)
-    {
+    { //Main Loop. 
+        /*
+            Basically, take the console input, make it lower case, build a command and then run it. 
+        */
+
         Console.WriteLine("Please input a commmand");
         inputraw = Console.ReadLine();
         if (String.IsNullOrEmpty(inputraw))
@@ -29,11 +44,17 @@ void Program()
         
 
 Command BuildCommand(string input){
+    /*
+        We take the input, separate it into an array of substrings with Space chars as the delimiter,
+        then take the first two and call them the "verb" and "noun", and pass them as arguments
+        to the constructor for the Command class along with all other words in the command as
+        remaining arguments.
+    */ 
     string verb = "undefined";
     string noun = "undefined";
     string[] commandRaw = {""};
     
-    //single word command, such as "help"
+    //single word command, such as "help". Only needs a verb, the noun defaults to "undefined".
     if (!input.Contains(' '))
     {
         verb = input;
@@ -76,28 +97,41 @@ void DoCommand(Command command){
 }
     
 public class Command{
+    //Instruction stores the verb and noun as a string, separated by a single space. 
     public string Instruction { get; set; }
+    
     public List<string> Arguments { get; set; }
     
     public Command(string verb, string noun, List<string> arguments){
+
+        //Trim ALL the stuff! No whitespace allowed! 
         verb = verb.Trim();
         noun = noun.Trim();
-        
         for (int i=0;i < arguments.Count(); i++)
         {
             arguments[i] = arguments[i].Trim();
         }
+        
+        //See what I said about Instruction? Right here, dude. 
         Instruction = verb + " " + noun;
+        //
+
+        /*
+            Can I just say that I kinda wish the standard naming convention for method input and output params
+            were _inputParam and outputParam_ respectively? I just love the idea of a leading underscore denoting 
+            input and trailing underscrore denoting output. 
+        */
         Arguments = arguments;
     }
     public Command(string verb, string noun){
+        //Overload for if the command is two words only. Like, Show Budget.
         verb = verb.Trim();
         noun = noun.Trim();
         Instruction = verb + " " + noun;
         Arguments = new List<string>();
-
     }
     public Command(string verb){
+        //Lastly an overload for a single word command. Mainly just Exit, reset, and help. 
         Instruction = verb;
         Arguments = new List<string>();
     }
@@ -109,22 +143,27 @@ public class Command{
 public class Budget
 {
     public Budget(int total)
-    {
+    {   //This constructor isn't actually used to set the total in practice. 
+        //Leaving it alone for now cuz it don't break nothing. 
         BudgetedAmount = total;
     }
     public int BudgetedAmount { get; set; }
     private int _remainingAmount = 0;
     public int RemainingAmount
-    {
+    { //Readonly property! attempting to read it recalculates total on an as-needed basis! 
+        //I love it! Shoulda switched to C# a decade ago!
+
         get
         {
             _remainingAmount = UpdateTotals();
             return _remainingAmount;
         }
     }
-    public List<int> transactions = new List<int>();
+    // important to note that transactions are signed, but user input loses sign. 
+    //  Use income/expense to make pos/neg.
+        public List<int> transactions = new List<int>();
     public int UpdateTotals()
-    {
+    {//yum yum add em up
         int transactionsTotal = 0;
         foreach (int t in transactions)
         {
@@ -134,20 +173,23 @@ public class Budget
 
     }
     public void ShowBudget(List<string> arguments)
-    {
+    { 
         Console.WriteLine("Budgeted Amount: {0} \nRemaining: {1}",BudgetedAmount,RemainingAmount);
     }
 
     public void SetBudget(List<string> arguments)
-    {
-        if (arguments.Count() == 0){
-            SetBudget();
+    { 
+        if (arguments.Count() == 0){ 
+            SetBudget(); //see here? I only gotta write the No Value Given error once. boom. 
         }
         else
-        {
+        { //really only arg 0 matters here. Bless me father for I have sinned: technically I left this to 
+        //use the whole arguments array because I want to futureproof for when I add categories in a later development 
+        //stage.
+
             string argument0 = arguments[0];
             int budgetedAmount = 0;
-            bool success = int.TryParse(argument0,out budgetedAmount);
+            bool success = int.TryParse(argument0,out budgetedAmount); //OUT VAR! See mom, I'm a real programmer!
             if (success)
                 this.BudgetedAmount = budgetedAmount;
             else
@@ -159,13 +201,13 @@ public class Budget
         Console.WriteLine("No value given. Please try again.");
     }
     public void AddExpense(List<string> arguments)
-    {
+    {//Always makes input value positive
         if (arguments.Count == 1){
                 this.transactions.Add(Math.Abs(Convert.ToInt32(arguments[0])));
             }
     }
     public void AddIncome(List<string> arguments)
-    {
+    { //always makes input value negative!
         if (arguments.Count == 1){
                 this.transactions.Add(-1*Math.Abs(Convert.ToInt32(arguments[0])));
             }
@@ -176,7 +218,7 @@ public class Budget
         return false;
     }
     public bool Reset()
-    {
+    { //Confirmation prompt handles Yes/no AND y/n, and is case insensitive! 
         Console.WriteLine("Are you sure? Yes to reset budget and expenses, No to return.");
         string? input = Console.ReadLine();
         if (string.IsNullOrEmpty(input))
@@ -203,7 +245,7 @@ public class Budget
     }
     public void ShowHelp(List<string> arguments)
     {
-        
+        Console.WriteLine("Invalid Input. Try again.");
     }
     public void ShowHelp()
     {
