@@ -26,13 +26,6 @@ void Program()
     }
 
 }
-
-// void WriteDebugLine(FormattableString debugLine){
-//     ConsoleColor oldColor = Console.ForegroundColor;
-//     Console.ForegroundColor = ConsoleColor.Gray;
-//     Console.WriteLine(debugLine);
-//     Console.ForegroundColor = oldColor;
-// }
         
 
 Command BuildCommand(string input){
@@ -77,7 +70,7 @@ void DoCommand(Command command){
         case "add income": budget.AddIncome(arguments);break;
         case "reset": budget.Reset(arguments);break;
         case "help": budget.ShowHelp();break;
-        case "exit": budget.ShowHelp();break;
+        case "exit": budget.Exit();break;
         default: budget.InvalidCommand(); break;
     }
 }
@@ -167,15 +160,46 @@ public class Budget
     }
     public void AddExpense(List<string> arguments)
     {
-        Console.WriteLine("add expense");
+        if (arguments.Count == 1){
+                this.transactions.Add(Math.Abs(Convert.ToInt32(arguments[0])));
+            }
     }
     public void AddIncome(List<string> arguments)
     {
-        Console.WriteLine("add income");
+        if (arguments.Count == 1){
+                this.transactions.Add(-1*Math.Abs(Convert.ToInt32(arguments[0])));
+            }
     }
-    public void Reset(List<string> arguments)
+    public bool Reset(List<string> arguments)
     {
-        Console.WriteLine("reset");
+        Console.WriteLine("Invalid Input. Try again.");
+        return false;
+    }
+    public bool Reset()
+    {
+        Console.WriteLine("Are you sure? Yes to reset budget and expenses, No to return.");
+        string? input = Console.ReadLine();
+        if (string.IsNullOrEmpty(input))
+            input = "invalid";
+        if (input == "invalid"){
+            Console.WriteLine("Invalid Input. Try again.");
+            return false;
+        }
+        input = input.ToLower();
+        if (input == "yes" || input == "y"){
+            Console.WriteLine("Resetting all values...");
+            Console.WriteLine("Press any key to continue.");
+            this.BudgetedAmount = 0; 
+            this.transactions.Clear();
+            Console.ReadKey();
+            return true;
+        }
+        if (input == "no" || input == "n"){
+            Console.WriteLine("Cancelled Reset Operation.");
+            return false;
+        }
+        return false;
+
     }
     public void ShowHelp(List<string> arguments)
     {
@@ -196,13 +220,33 @@ public class Budget
         WriteHorizontalLine();
         Console.WriteLine("");
     }
-    public void Exit(List<string> arguments)
-    {
-
+    public bool Exit(List<string> arguments){
+        Console.WriteLine("Invalid Input. Try again.");
+        return false;
     }
-    public void Exit()
+    public bool Exit()
     {
-        
+        Console.WriteLine("Are you sure you wish to exit?");
+        string? input = Console.ReadLine();
+        if (string.IsNullOrEmpty(input))
+            input = "invalid";
+        if (input == "invalid"){
+            Console.WriteLine("Invalid Input. Try again.");
+            return false;
+        }
+        input = input.ToLower();
+        if (input == "yes" || input == "y"){
+            Console.WriteLine("Preparing to exit program...");
+            Console.WriteLine("Press any key to continue.");
+            Environment.Exit(0);
+            return true;
+        }
+        if (input == "no" || input == "n"){
+            Console.WriteLine("Cancelled Exit Operation.");
+            return false;
+        }
+        return false;
+
     }
     public void InvalidCommand(){
         Console.WriteLine("Sorry, that appears to be an invalid command.");
