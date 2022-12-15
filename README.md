@@ -7,20 +7,20 @@ In an effort to avoid feature creep and to keep the project completable, I'm pla
 so to speak. 
 
 Stage 1: Basic Functionality. [Complete]
-    This program will be a simple console app. 
-        At start, there will be single main class called Budget. 
-        Budget will contain a list of Ints called Transactions, an Int called BudgetedAmount, and an Int called RemainingAmount
-        There will be a Method named Update() that will call each time any other command is called. 
-    Interaction will be command line based and will allow user to input following commands:
-        - Show Budget - Will output the BudgetedAmount, then the transactions list, and then the remaining total. 
-        - Set Budget nnnn - Updates BudgetedAmount to the specified number nnnn
-        - Add Expense nnnn- Adds a negative Int to the Transactions list with value nnnn
-        - Add Income nnnn - Adds a positive Int to the Transactions list with value nnnn
-        - Reset - Resets all values after a confirmation dialogue
-        - Help - Lists the above commands.
+* This program will be a simple console app. 
+* Budget will contain a list of Ints called Transactions, an Int called BudgetedAmount, and an Int called RemainingAmount
+* There will be a Method named Update() that will call each time any other command is called. 
+* Interaction will be command line based and will allow user to input following commands:
+- Show Budget - Will output the BudgetedAmount, then the transactions list, and then the remaining total. 
+- Set Budget nnnn - Updates BudgetedAmount to the specified number nnnn
+- Add Expense nnnn- Adds a negative Int to the Transactions list with value nnnn
+- Add Income nnnn - Adds a positive Int to the Transactions list with value nnnn
+- Reset - Resets all values after a confirmation dialogue
+- Help - Lists the above commands.
 
         
 Stage 2: Expected Features 
+
     This will expand the budgeting tool to allow for categorization and naming of expenses. 
 
     This will be done by replacing the Transactions list type (Int) with an class called Transaction. 
