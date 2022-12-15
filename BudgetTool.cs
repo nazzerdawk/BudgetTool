@@ -1,30 +1,17 @@
-﻿/*
-    This is a budgeting tool that I wrote over the course of about 6 hours. It's my first "complete" project in C#. 
-    I started C# after 15 years of GML (Game Maker Language).  
-
-    Using newer Dotnet pardigm of having no main() function. I dislike the extra indentation, sue me.
-*/
-
-Budget budget = new Budget(0);
+﻿Budget budget = new Budget(0);
 Program();
 
 
 
 void Program()
-{//This method contains our main loop.
+{
     
 
-    //nullable due to fact that a person who REALLY WANTS TO INPUT NULL VALUES can do so
-    //How, I don't ever remember, but apparently it's possible.  
     string? inputraw = ""; 
     string input = "";
     Console.WriteLine("Hello, welcome to my budgeting tool.");
     while (true)
-    { //Main Loop. 
-        /*
-            Basically, take the console input, make it lower case, build a command and then run it. 
-        */
-
+    { 
         Console.WriteLine("Please input a commmand");
         inputraw = Console.ReadLine();
         if (String.IsNullOrEmpty(inputraw))
@@ -161,13 +148,21 @@ public class Budget
     }
     // important to note that transactions are signed, but user input loses sign. 
     //  Use income/expense to make pos/neg.
-        public List<int> transactions = new List<int>();
-    public int UpdateTotals()
-    {//yum yum add em up
-        int transactionsTotal = 0;
-        foreach (int t in transactions)
+    public class Transaction {
+        public int Amount { get; set; }
+        public Transaction(int amount)
         {
-            transactionsTotal += t;
+            Amount = amount; 
+        }
+
+    }
+    public List<Transaction> transactions = new List<Transaction>();
+    public int UpdateTotals()
+    {
+        int transactionsTotal = 0;
+        foreach (Transaction t in transactions)
+        {
+            transactionsTotal += t.Amount;
         }
         return this.BudgetedAmount - transactionsTotal;
 
@@ -180,16 +175,14 @@ public class Budget
     public void SetBudget(List<string> arguments)
     { 
         if (arguments.Count() == 0){ 
-            SetBudget(); //see here? I only gotta write the No Value Given error once. boom. 
+            SetBudget(); 
         }
         else
-        { //really only arg 0 matters here. Bless me father for I have sinned: technically I left this to 
-        //use the whole arguments array because I want to futureproof for when I add categories in a later development 
-        //stage.
+        { 
 
             string argument0 = arguments[0];
             int budgetedAmount = 0;
-            bool success = int.TryParse(argument0,out budgetedAmount); //OUT VAR! See mom, I'm a real programmer!
+            bool success = int.TryParse(argument0,out budgetedAmount);
             if (success)
                 this.BudgetedAmount = budgetedAmount;
             else
@@ -203,13 +196,15 @@ public class Budget
     public void AddExpense(List<string> arguments)
     {//Always makes input value positive
         if (arguments.Count == 1){
-                this.transactions.Add(Math.Abs(Convert.ToInt32(arguments[0])));
+            Transaction expense = new Transaction(Math.Abs(Convert.ToInt32(arguments[0])));
+                this.transactions.Add(expense);
             }
     }
     public void AddIncome(List<string> arguments)
-    { //always makes input value negative!
+    { //always makes input value negative
         if (arguments.Count == 1){
-                this.transactions.Add(-1*Math.Abs(Convert.ToInt32(arguments[0])));
+            Transaction income = new Transaction(-1*Math.Abs(Convert.ToInt32(arguments[0])));
+            this.transactions.Add(income);
             }
     }
     public bool Reset(List<string> arguments)
