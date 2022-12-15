@@ -3,7 +3,7 @@
 
 This will be the general outline for this project. 
 
-    In an effort to avoid feature creep and to keep the project completable, I'm planning it in 3 stages, and plan to keep the main branch "Always Shippable" 
+In an effort to avoid feature creep and to keep the project completable, I'm planning it in 3 stages, and plan to keep the main branch "Always Shippable" 
 so to speak. 
 
 Stage 1: Basic Functionality. [Complete]
